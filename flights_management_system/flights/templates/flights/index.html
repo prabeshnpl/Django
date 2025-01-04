@@ -1,0 +1,22 @@
+{% extends 'flights/layout.html' %}
+
+{% block body %}
+<h1>Flights</h1><br>
+<ul>
+    {% for flight in flights %}
+
+    <li>
+        <pre><h2>Flight no:{{ flight.id }}</h2>
+            <h3>{{flight.origin}} to {{flight.destination}}</h3>
+            <strong><a href="{% url 'FLIGHTS:fl_detail' flight.id %}">Book Now</a></strong>
+        </pre>        
+    </li><br><br>
+
+    {% empty %}  
+        <p>No Flights.</p>
+    {% endfor %}
+</ul>
+<br><br>
+<hr>
+<h3>Search by <a href="{% url 'Airports:index' %}">Airports</a></h3>
+{% endblock %}

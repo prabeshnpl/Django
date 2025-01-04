@@ -1,0 +1,31 @@
+{% extends 'users/layout.html' %}
+{% block body %}
+<div class="main_content">
+    <div class="sign-in">Sign in</div>
+    <p style="margin-left: 25px;">to continue to Prabhu</p>
+    <div class="fillup">
+        <form method="post" class="email_form" >
+            {% csrf_token %}
+                      
+            <label>{{ form.username.label }}</label>
+                {{ form.username }}
+            <label>{{ form.email.label }}</label>
+                {{ form.email }}
+            <label>{{ form.password.label }}</label>
+                {{ form.password }}
+            <label>{{ form.confirm_password.label }}</label>
+                {{ form.confirm_password }}
+                
+            <div >
+                <input type="submit" value="Register" class="register">
+            </div>
+
+        </form>
+        
+        <footer>
+            <a href="{% url 'USER:login' %}">Already have an account?</a>
+        </footer>
+    </div>        
+    
+</div>
+{% endblock %}
