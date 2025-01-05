@@ -8,5 +8,9 @@
 <body>
     {% block body %}
     {% endblock %}
+    <form method="post" action="{% url 'Airports:logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
 </body>
 </html>

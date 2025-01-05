@@ -22,5 +22,6 @@ urlpatterns = [
     path('flights/',include('flights.urls')),
     path('airport/',include('airport.urls')),
     path('passenger/',include('passenger.urls')),
+    path('login/',include(('users.urls','users'),namespace='users')),
 
 ]

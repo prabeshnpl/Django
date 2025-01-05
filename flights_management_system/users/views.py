@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
-@login_required(login_url='login/')
+@login_required(login_url='users:login')
 def index(request):
     return render(request,'users/index.html')
 

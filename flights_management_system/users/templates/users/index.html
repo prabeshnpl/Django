@@ -10,8 +10,9 @@
         <a href="{% url 'Airports:index' %}">Go to Airports</a>
     </h2>
     
-    <h2>
-        <a href="{% url 'USER:logout' %}">Logout</a>
-    </h2>
+    <form method="post" action="{% url 'USER:logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
 </div>
 {% endblock %}

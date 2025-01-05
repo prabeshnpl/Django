@@ -1,12 +1,15 @@
 from django.shortcuts import render,redirect
 from . import models
 from passenger.models import PASSENGER
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+@login_required(login_url='users:login')
 def flights(request):
     f = models.FLIGHTS.objects.all()
     return render(request,'flights/index.html',{'flights':f})
 
-
+@login_required(login_url='users:login')
 def fl_detail(request,pk):
     
     f = models.FLIGHTS.objects.get(pk=pk)
