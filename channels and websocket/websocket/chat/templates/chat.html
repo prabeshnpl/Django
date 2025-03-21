@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat testing</title>
+</head>
+<body>
+    <h1>
+        Lets Chat!!!
+    </h1>
+    <div id="div"></div>
+    <br><br>
+    <form id="form">
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="message">
+
+        <input type="submit" value="Submit">
+
+    </form>
+    <script>
+        let url = `ws://${window.location.host}/ws/chat/`;
+
+        const socket = new WebSocket(url);
+
+        socket.onmessage = (e) => {
+            let data = JSON.parse(e.data);
+            console.log(`Message received:`,data);
+            if(data.type === "chat")
+                {
+                    document.getElementById('div').insertAdjacentHTML("beforeend",`<div>${data.message}</div`)
+                }
+        }
+
+        document.getElementById('form').addEventListener('submit',(e)=>{
+            e.preventDefault();
+            message = e.target.message.value;
+            socket.send(JSON.stringify({'message':message}));
+            form.reset();
+        })
+    </script>
+</body>
+</html>
