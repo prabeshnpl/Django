@@ -12,30 +12,34 @@
     <div id="div"></div>
     <br><br>
     <form id="form">
-        <label for="text">Text:</label>
-        <input type="text" id="text" name="message">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="text">Message:</label>
+        <input type="text" id="text" name="message" required>
 
         <input type="submit" value="Submit">
 
     </form>
     <script>
-        let url = `ws://${window.location.host}/ws/chat/`;
+        let room_name = 'general'
+        let url = `ws://${window.location.host}/ws/chat/${room_name}/`;
 
         const socket = new WebSocket(url);
 
         socket.onmessage = (e) => {
             let data = JSON.parse(e.data);
             console.log(`Message received:`,data);
-            if(data.type === "chat")
+            if(data.type === "group_chat")
                 {
-                    document.getElementById('div').insertAdjacentHTML("beforeend",`<div>${data.message}</div`)
+                    document.getElementById('div').insertAdjacentHTML("beforeend",`<div>${data.username} : ${data.message}</div`)
                 }
         }
 
         document.getElementById('form').addEventListener('submit',(e)=>{
             e.preventDefault();
             message = e.target.message.value;
-            socket.send(JSON.stringify({'message':message}));
+            username = e.target.username.value;
+            socket.send(JSON.stringify({'message':message,'username':username}));
             form.reset();
         })
     </script>
