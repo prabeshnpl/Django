@@ -1,0 +1,23 @@
+{% extends 'flights/layout.html' %}
+
+{% block body %}
+<h1>Airports</h1><br>
+<ul>
+    {% for ap in airports %}
+
+        <li>
+            <a href="{% url 'Airports:airport' ap.id %}">{{ ap }}</a>
+        </li>
+
+        <br>
+
+        {% empty %}
+        <div>No Airport available right now.</div>
+    {% endfor %}
+</ul>
+
+<br><br><br>
+Search by <a href="{% url 'FLIGHTS:index' %}">Flights</a>
+
+{% endblock %}
+

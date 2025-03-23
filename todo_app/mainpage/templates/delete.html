@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block input_add %}
+<input class="input_bar_button" id="input_bar_button" value="......Add">
+{% endblock %}
+
+
+{% block delete %}
+<div class="delete_task">
+    <div>
+        <h1>Are you sure to delete this task?</h1>
+    </div>
+
+    <div class="delete_confirmation">
+        <div class="delete_yes_no"><a href="{% url 'delete' pk 'Yes' %}">Yes</a></div>
+
+        <div class="delete_yes_no"><a href="{% url 'create_retrieve' %}">No</a></div>
+    </div>
+</div>
+{% endblock %}

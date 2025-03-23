@@ -1,0 +1,64 @@
+{% extends 'flights/layout.html' %}
+
+{% block body %}
+
+<h1>Flight {{flight.id}}</h1>
+
+<hr>
+<!-- Flight detail -->
+<h2>{{flight}}</h2>
+
+<br>
+
+<!-- passenger detail -->
+    <h3>Passengers</h3>
+    <ul>
+        {% for passenger in passengers %}
+
+        <li>{{ passenger }}</li>
+
+        {% empty %}
+        <div>No passenger!</div>
+
+        {% endfor %}
+    </ul>
+
+    <br>
+
+<!-- Add new passenger -->
+    <div>
+        <h4>Book now:</h4>
+        {% if max_passenger == total_passenger %}
+            <p>Sorry! Max passenger reached.</p>
+
+        {% elif total_passenger < max_passenger %}
+
+            <form action="{% url 'FLIGHTS:fl_detail' flight.id %}" method="post">
+                {% csrf_token %}
+
+                <select name="new_passenger">
+                    <option value="" disabled selected>SELECT</option>
+
+                    {% for p in all_passenger %}
+                        
+                        {% if p not in passengers %}
+                        <option value="{{p.id}}">{{ p }}</option>
+                        {% endif %}
+                        
+                    {% endfor %}
+
+                </select>
+                <input value="Add" type="submit">
+            </form>
+
+        {% endif %}
+    </div>
+
+<br><br><br>
+<hr>
+
+<!-- link back to flights -->
+<h3><a href="{% url 'FLIGHTS:index' %}">Back to flights</a></h3>
+<!-- link to airports -->
+<h3>Search by <a href="{% url 'Airports:index' %}">Airports</a></h3>
+{% endblock %}

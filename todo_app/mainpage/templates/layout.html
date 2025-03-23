@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>To Do List</title>
+   <meta name="viewport" content="width=device-width , initial-scale=1.0">
+   <meta charset="UTF-8">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+   <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+</head>
+
+<body style="display:flex;justify-content: center;background-color:aqua;">
+
+   {% block delete %}
+   {% endblock %}
+
+   <div class="container">
+
+      <header>
+         <h1>TO DO LIST</h1>
+      </header>
+
+      <div class="content">
+         <div class="block input_field">
+         
+            <!-- <label for="input_bar"></label>
+            <input class="input_bar" id="input_bar" placeholder="What needs to be done?">
+            
+            <button class="input_bar_button" id="input_bar_button" >
+               <p class="plus">+</p>
+            </button> -->
+            <span>
+               <form method="post" action="{% url 'create_retrieve' %}">
+                  {% csrf_token %}
+                  {{ form.task }}
+
+                  {% block input_add %}
+                  {% endblock %}
+               </form>
+            </span>
+            
+         </div>
+   
+         <div id="task-field">
+             
+               {% for task in tasks %}
+               <div class="task-list">
+                  <div class="task-text">{{ task.task }} : {{ task.created_at}}</div>
+                  <span><a href="{% url 'update' task.id  %}">Update</a></span>
+                  <span><a href="{% url 'delete' task.id 'None' %}">Delete</a></span>
+               </div>
+               {% endfor %}
+
+         </div>
+      </div>
+      
+      <footer>
+         <button id="Clear" type="submit">
+            Clear All
+         </button>
+         
+      </footer>
+   </div>
+<!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+</body>
+
+</html>

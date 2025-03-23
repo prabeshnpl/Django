@@ -1,0 +1,70 @@
+.body{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(249, 249, 238);
+}
+.main_content{
+    height: 75vh;
+    width: 65vh;
+    background-color: white;
+    border-radius: 50px;
+    position: fixed;
+    
+}
+.sign-in{
+    margin-top: 100px;
+    margin-left: 25px;
+    font-size: 40px;
+}
+.email_form{
+    margin-top: 30px;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
+}
+
+.register{
+    margin-top: 3%;
+    margin-left: 80%;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    height: 48px;
+    width: 78.73px;
+    color: white;
+    background-color:#1a73e8;
+}
+.flashed-message{
+    position: absolute;
+    margin-bottom: 50px;
+}
+.fillup{
+    position: relative;
+}
+footer{
+    margin-top: 30%;
+    margin-left: 25px;
+}
+
+input{
+    border-radius: 20px;
+    height: 30px;
+    width: 40vh;
+    margin: 5px;
+}
+input::placeholder{
+    color: gray;
+    font-style: italic;
+    font-size: 14px;
+}
+.label1{
+    margin-left: 10px;
+}
+.label1 input{
+    margin-left: 16px;
+}

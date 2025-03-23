@@ -1,0 +1,18 @@
+{% extends 'users/layout.html' %}
+
+{% block body %}
+<div class="body">
+    <h2>
+        <a href="{% url 'FLIGHTS:index' %}">Go to Flights</a>
+    </h2> 
+    
+    <h2>
+        <a href="{% url 'Airports:index' %}">Go to Airports</a>
+    </h2>
+    
+    <form method="post" action="{% url 'USER:logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</div>
+{% endblock %}
