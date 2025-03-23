@@ -4,22 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat testing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #container{
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            background-color: aqua;
+        }
+        #chats_container{
+            height: 50%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            background-color: aquamarine;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #actual_chats{
+            background-color: white;
+            height: 100%;
+            width: 70%;
+        }
+        .chat-card{
+            min-width: 50%;
+            width: 60%;
+            height: 10%;
+            background-color: bisque;
+            border-radius: 10px;  
+            display: flex;          
+            align-items: center;
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+        #form{
+            height: 40%;
+            background-color: antiquewhite;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+    </style>
 </head>
 <body>
-    <h1>
-        Lets Chat!!!
-    </h1>
-    <div id="div"></div>
+    
+    <div id="container">
+        <h1>
+            Lets Chat!!!
+        </h1>
+        <div id="chats_container">
+            <div id="actual_chats"></div>
+        </div>
+
+        <form id="form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="text">Message:</label>
+            <input type="text" id="text" name="message" required>
+    
+            <input type="submit" value="Submit" style="margin-top: 10px;">
+    
+        </form>
+
+    </div>
+    
     <br><br>
-    <form id="form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="text">Message:</label>
-        <input type="text" id="text" name="message" required>
-
-        <input type="submit" value="Submit">
-
-    </form>
+    
     <script>
         let room_name = 'general'
         let url = `ws://${window.location.host}/ws/chat/${room_name}/`;
@@ -31,7 +95,7 @@
             console.log(`Message received:`,data);
             if(data.type === "group_chat")
                 {
-                    document.getElementById('div').insertAdjacentHTML("beforeend",`<div>${data.username} : ${data.message}</div`)
+                    document.getElementById('actual_chats').insertAdjacentHTML("beforeend",`<div class="chat-card">${data.username} : ${data.message}</div`)
                 }
         }
 
